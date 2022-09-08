@@ -1,88 +1,94 @@
-# vue-admin-template
+## **1、中文界面配置**
 
-> A minimal vue admin template with Element UI & axios & iconfont & permission control & lint
+- 首先安装中文插件：`Chinese (Simplified) Language Pack for Visual Studio Code`
+- 右下角弹出是否重启vs，点击“yes”
+- 有些机器重启后如果界面没有变化，则 点击 左边栏`Manage -> Command Paletet...【Ctrl+Shift+p】`
+- 在搜索框中输入“`configure display language`”，回车
+- 打开`locale.json`文件，修改文件下的属性 `"locale":"zh-cn"`
 
-**Live demo:** http://panjiachen.github.io/vue-admin-template
-
-[中文文档](https://github.com/PanJiaChen/vue-admin-template/blob/master/README-zh.md)
-
-## Build Setup
-
-```bash
-# Clone project
-git clone https://github.com/PanJiaChen/vue-admin-template.git
-
-# Install dependencies
-npm install
-
-# Serve with hot reload at localhost:9528
-npm run dev
-
-# Build for production with minification
-npm run build
-
-# Build for production and view the bundle analyzer report
-npm run build --report
-```
-
-## Demo
-
-![demo](https://github.com/PanJiaChen/PanJiaChen.github.io/blob/master/images/demo.gif)
-
-## Extra
-
-If you want router permission && generate menu by user roles , you can use this branch [permission-control](https://github.com/PanJiaChen/vue-admin-template/tree/permission-control)
-
-This project is based on `webpack4` development. If you want to use `webpack3` development, please use this branch [webpack3](https://github.com/PanJiaChen/vue-admin-template/tree/webpack3)
-
-For `typescript` version, you can use [vue-typescript-admin-template](https://github.com/Armour/vue-typescript-admin-template) (Credits: [@Armour](https://github.com/Armour))
-
-## Related Project
-
-[vue-element-admin](https://github.com/PanJiaChen/vue-element-admin)
-
-[electron-vue-admin](https://github.com/PanJiaChen/electron-vue-admin)
-
-[vue-typescript-admin-template](https://github.com/Armour/vue-typescript-admin-template)
-
-### Element-Ui using cdn tutorial
-
-First find `index.html`([root directory](https://github.com/PanJiaChen/vue-admin-template/blob/element-ui-cdn/index.html))
-
-Import css and js of `Element`, and then import vue. Because `Element` is vue-dependent, vue must be import before it.
-
-Then find [webpack.base.conf.js](https://github.com/PanJiaChen/vue-admin-template/blob/element-ui-cdn/build/webpack.base.conf.js)
-Add `externals` to make webpack not package vue and element.
-
-```
-externals: {
-  vue: 'Vue',
-  'element-ui':'ELEMENT'
+```jsx
+{
+	// 定义 VS Code 的显示语言。
+	// 请参阅 https://go.microsoft.com/fwlink/?LinkId=761051，了解支持的语言列表。
+	
+	"locale":"zh-cn" // 更改将在重新启动 VS Code 之后生效。
 }
 ```
 
-Finally there is a small detail to pay attention to that if you import vue in global, you don't need to manually `Vue.use(Vuex)`, it will be automatically mounted, see
-[issue](https://github.com/vuejs/vuex/issues/731)
+- 重启vs
+## **2、插件安装**
 
-And you can use `npm run build --report` to see the effect
+为方便后续开发，建议安装如下插件（红色矩形框标记的插件）
+- `chinese`：中文简体包
+- `Live server`：内置服务器（类似模拟`Tomcat`效果）
+- `Vetur`，`Vue-helper`：帮助开发`Vue`
+## **3、预览网页**
 
-Pictured:
-![demo](https://panjiachen.github.io/images/element-cdn.png)
+**以文件路径方式打开网页预览**
 
-**[Detailed code](https://github.com/PanJiaChen/vue-admin-template/commit/746aff560932704ae821f82f10b8b2a9681d5177)**
+- 需要安装`“open in browser”`插件：
+文件右键 -> Open In Default Browser
 
-**[Branch](https://github.com/PanJiaChen/vue-admin-template/tree/element-ui-cdn)**
+**以服务器方式打开网页预览**
 
-## Browsers support
+- 需要安装`“Live Server”`插件：
 
-Modern browsers and Internet Explorer 10+.
+文件右键 -> Open with Live Server
 
-| [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/edge/edge_48x48.png" alt="IE / Edge" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>IE / Edge | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/firefox/firefox_48x48.png" alt="Firefox" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>Firefox | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/chrome/chrome_48x48.png" alt="Chrome" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>Chrome | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/safari/safari_48x48.png" alt="Safari" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>Safari |
-| --------- | --------- | --------- | --------- |
-| IE10, IE11, Edge| last 2 versions| last 2 versions| last 2 versions
+## 安装node.js
+## **安装命令行转码工具**
 
-## License
+Babel提供babel-cli工具，用于命令行转码。它的安装命令如下：
 
-[MIT](https://github.com/PanJiaChen/vue-admin-template/blob/master/LICENSE) license.
+```bash
+npm install --global babel-cli
 
-Copyright (c) 2017-present PanJiaChen
+#查看是否安装成功
+babel --version
+```
+# Webpack安装
+
+## 1、全局安装
+
+```
+npm install -g webpack webpack-cli
+```
+
+## 2、安装后查看版本号
+
+```
+webpack -v
+```
+# **CSS打包**
+
+## **1、安装 style-loader 和 css-loader**
+
+Webpack 本身只能处理 JavaScript 模块，如果要处理其他类型的文件，就需要使用 loader 进行转换。
+
+Loader 可以理解为是模块和资源的转换器。
+
+首先我们需要安装相关Loader插件，css-loader 是将 css 装载到 javascript；style-loader 是让 javascript 认识css
+
+```
+npm install --save-dev style-loader css-loader
+```
+
+## ****2、修改webpack.config.js****
+
+```jsx
+const path = require("path"); //Node.js内置模块
+module.exports = {
+    //...,
+    output:{},
+    module: {
+        rules: [  
+            {  
+                test: /\.css$/,    //打包规则应用到以css结尾的文件上
+                use: ['style-loader', 'css-loader']
+            }  
+        ]  
+    }
+}
+```
+## 3、ESLint插件安装
+vs code的ESLint插件，能帮助我们自动整理代码格式
