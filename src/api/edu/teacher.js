@@ -1,6 +1,6 @@
 import request from '@/utils/request'
 
-const api_name = '/eduservice/edu-teacher'
+const api_name = '/edu-service/edu-teacher'
 export default {
 
   getPageList(page, limit, searchObj) {
