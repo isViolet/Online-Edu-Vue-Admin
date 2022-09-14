@@ -9,5 +9,12 @@ export default {
       url: `${api_name}/getNestedTreeList`,
       method: 'get'
     })
+  },
+
+  listAllOneSubject() {
+    return request({
+      url: `${api_name}/listAllOneSubject`,
+      method: 'get'
+    })
   }
 }
