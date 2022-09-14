@@ -74,7 +74,7 @@
           :show-file-list="false"
           :on-success="handleAvatarSuccess"
           :before-upload="beforeAvatarUpload"
-          :action="BASE_API+'/eduoss/fileoss'"
+          :action="BASE_API+'/oss-service/file/upload?host=course-cover'"
           class="avatar-uploader">
           <img :src="courseInfo.cover">
         </el-upload>
@@ -108,7 +108,7 @@ export default {
         teacherId: '',
         lessonNum: 0,
         description: '',
-        cover: '/static/01.jpg',
+        cover: process.env.OSS_PATH + '/course-cover/default.jpg',
         price: 0
       },
       BASE_API: process.env.BASE_API, // 接口API地址
