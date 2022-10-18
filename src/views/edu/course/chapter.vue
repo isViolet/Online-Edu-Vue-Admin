@@ -20,14 +20,32 @@
   </div>
 </template>
 <script>
+import chapter from '@/api/edu/chapter'
+
 export default {
   data() {
     return {
-      saveBtnDisabled: false
+      saveBtnDisabled: false,
+      courseId: '', // 所属课程
+      chapterNestedList: [] // 章节嵌套课时列表
     }
   },
   created() {
+    console.log('chapter created')
+    this.init()
+  },
+  init() {
+    if (this.$route.params && this.$route.params.id) {
+      this.courseId = this.$route.params.id
+      // 根据id获取课程基本信息
+      this.fetchChapterNestedListByCourseId()
+    }
+  },
 
+  fetchChapterNestedListByCourseId() {
+    chapter.getNestedTreeList(this.courseId).then(response => {
+      this.chapterNestedList = response.data.items
+    })
   },
   methods: {
     previous() {
